@@ -212,6 +212,29 @@ def case_run(request):
         case_result = execute.run_case()
         return JsonResponse(case_result)
 
+def case_update(request):
+    if request.method == 'POST':
+        case_id = request.POST['case_id']
+        case_name = request.POST['case_name']
+        prj_id = request.POST['prj_id']
+        project = Project.objects.get(prj_id=prj_id)
+        url = request.POST['url']
+        private_key = request.POST['private_key']
+        description = request.POST['description']
+        Case.objects.filter(case_id=case_id).update(case_name=case_name, url=url, project=project,
+                                                     private_key=private_key, description=description)
+        return HttpResponseRedirect("/base/case/")
+    case_id = request.GET['case_id']
+    case = Case.objects.get(case_id=case_id)
+    prj_list = Project.objects.all()
+    return render(request, "base/case/update.html", {"case": case, "prj_list": prj_list})
+
+def case_delete(request):
+    if request.method == 'GET':
+        case_id = request.GET['case_id']
+        Case.objects.filter(case_id=case_id).delete()
+        return HttpResponseRedirect("base/case/")
+
 
 # 计划增删改查
 def plan_index(request):
@@ -239,15 +262,18 @@ def plan_update(request):
         plan_name = request.POST['plan_name']
         prj_id = request.POST['prj_id']
         project = Project.objects.get(prj_id=prj_id)
-        url = request.POST['url']
+        env_id = request.POST['env_id']
+        environment = Environment.objects.get(env_id=env_id)
+        content = request.POST.getlist("case_id")
         private_key = request.POST['private_key']
         description = request.POST['description']
-        Plan.objects.filter(plan_id=plan_id).update(plan_name=plan_name, url=url, project=project, private_key=private_key, description=description)
+        Plan.objects.filter(plan_id=plan_id).update(plan_name=plan_name, environment=environment, project=project, private_key=private_key, description=description,content=content)
         return HttpResponseRedirect("/base/plan/")
     plan_id = request.GET['plan_id']
     plan =Plan.objects.get(plan_id=plan_id)
     prj_list = Project.objects.all()
-    return render(request, "base/plan/update.html", {"plan": plan, "prj_list": prj_list})
+    env_list = Environment.objects.all()
+    return render(request, "base/plan/update.html", {"plan": plan, "prj_list": prj_list, "env_list": env_list})
 
 def plan_delete(request):
     if request.method == 'GET':

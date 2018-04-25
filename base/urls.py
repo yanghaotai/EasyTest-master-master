@@ -42,6 +42,8 @@ urlpatterns = [
     url(r'/case/', case_index),
     url(r'/case_add/', case_add),
     url(r'/case_run/', case_run),
+    url(r'/case_update/', case_update),
+    url(r'/case_delete/', case_delete),
 
     url(r'/plan/', plan_index),
     url(r'/plan_add/', plan_add),
