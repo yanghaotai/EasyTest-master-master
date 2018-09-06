@@ -71,7 +71,8 @@ class Execute():
             res = self.call_interface(if_dict["method"], if_dict["url"], if_dict["header"],
                                                  if_dict["body"], if_dict["data_type"])
             if_dict["res_status_code"] = res.status_code
-            if_dict["res_content"] = res.text
+            # if_dict["res_content"] = res.text
+            if_dict["res_content"] = res.json()
         except requests.RequestException as e:
             if_dict["result"] = "Error"
             if_dict["msg"] = str(e)
