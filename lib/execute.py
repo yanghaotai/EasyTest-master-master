@@ -207,7 +207,8 @@ class Execute():
             if content_type == "data":
                 res = requests.post(url=url, data=data, headers=header, verify=False)
         if method == "get":
-            res = requests.get(url=url, params=data, headers=header, verify=False)
+            # res = requests.get(url=url, params=data, headers=header, verify=False)
+            res = requests.get(url=url, params=data, headers=header)
         print(res.status_code, res.text)
         return res
 
