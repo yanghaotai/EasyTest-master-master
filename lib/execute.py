@@ -221,18 +221,18 @@ class Execute():
                 try:
                     res = requests.post(url=url, json=data, headers=header, verify=False)
                 except:
-                    res = call_interface(method, url, header, data, content_type='json')
+                    res = call_interface(self, method, url, header, data, content_type='json')
             if content_type == "data":
                 try:
                     res = requests.post(url=url, data=data, headers=header, verify=False)
                 except:
-                    res = call_interface(method, url, header, data, content_type='json')
+                    res = call_interface(self, method, url, header, data, content_type='json')
         if method == "get":
             # res = requests.get(url=url, params=data, headers=header, verify=False)
             try:
                 res = requests.get(url=url, params=data, headers=header)
             except:
-                res = call_interface(method, url, header, data, content_type='json')
+                res = call_interface(self, method, url, header, data, content_type='json')
         print(res.status_code, res.text)
         return res
 
