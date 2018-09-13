@@ -87,16 +87,16 @@ class Execute():
             if_dict["res_status_code"] = res.status_code
             # if_dict["res_content"] = res.text
             if_dict["res_content"] = res.json()
-        except requests.RequestException as e:
-            e = e
-            while 'Connection aborted' in str(e):
+        except requests.RequestException as er:
+            er = er
+            while 'Connection aborted' in str(er):
                 try:
                     res = self.call_interface(if_dict["method"], if_dict["url"], if_dict["header"],if_dict["body"], if_dict["data_type"])
                     if_dict["res_status_code"] = res.status_code
                     # if_dict["res_content"] = res.text
                     if_dict["res_content"] = res.json()
-                except requests.RequestException as e:
-                    e = e
+                except requests.RequestException as er:
+                    er = er
         except Exception as es:
             if_dict["result"] = "Error"
             if_dict["msg"] = str(es)
