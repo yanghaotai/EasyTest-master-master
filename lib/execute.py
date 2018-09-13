@@ -9,6 +9,7 @@ import hashlib
 import re
 import json
 from lib.signtype import get_sign
+import random
 
 class Execute():
     def __init__(self, case_id, env_id):
