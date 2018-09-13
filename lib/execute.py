@@ -264,6 +264,7 @@ class Execute():
         if method == "get":
             # res = requests.get(url=url, params=data, headers=header, verify=False)
             res = requests.get(url=url, params=data, headers=header)
-        print(res.status_code, res.text)
+            print(res)
+        print(res.status_code, res.text,res.url)
         return res
 
