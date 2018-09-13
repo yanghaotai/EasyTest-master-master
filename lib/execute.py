@@ -198,7 +198,7 @@ class Execute():
         return sign_type
 
 
-    发送请求(原始)
+    # 发送请求(原始)
     def call_interface(self, method, url, header, data, content_type='json'):
         print(url, header, data)
         if method == "post":
