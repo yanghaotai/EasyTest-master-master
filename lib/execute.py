@@ -198,17 +198,42 @@ class Execute():
         return sign_type
 
 
+    # 发送请求(原始)
+    # def call_interface(self, method, url, header, data, content_type='json'):
+    #     print(url, header, data)
+    #     if method == "post":
+    #         if content_type == "json":
+    #             res = requests.post(url=url, json=data, headers=header, verify=False)
+    #         if content_type == "data":
+    #             res = requests.post(url=url, data=data, headers=header, verify=False)
+    #     if method == "get":
+    #         # res = requests.get(url=url, params=data, headers=header, verify=False)
+    #         res = requests.get(url=url, params=data, headers=header)
+    #     print(res.status_code, res.text)
+    #     return res
+
+
     # 发送请求
     def call_interface(self, method, url, header, data, content_type='json'):
         print(url, header, data)
         if method == "post":
             if content_type == "json":
-                res = requests.post(url=url, json=data, headers=header, verify=False)
+                try:
+                    res = requests.post(url=url, json=data, headers=header, verify=False)
+                except:
+                    res = call_interface(method, url, header, data, content_type='json')
             if content_type == "data":
-                res = requests.post(url=url, data=data, headers=header, verify=False)
+                try:
+                    res = requests.post(url=url, data=data, headers=header, verify=False)
+                except:
+                    res = call_interface(method, url, header, data, content_type='json')
         if method == "get":
             # res = requests.get(url=url, params=data, headers=header, verify=False)
-            res = requests.get(url=url, params=data, headers=header)
+            try:
+                res = requests.get(url=url, params=data, headers=header)
+            except:
+                res = call_interface(method, url, header, data, content_type='json')
         print(res.status_code, res.text)
         return res
+
 
