@@ -76,6 +76,7 @@ class Execute():
             # if_dict["res_content"] = res.text
             if_dict["res_content"] = res.json()
         except requests.RequestException as e:
+            print(e)
             if_dict["result"] = "Error"
             if_dict["msg"] = str(e)
             return if_dict
