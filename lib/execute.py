@@ -80,7 +80,8 @@ class Execute():
         #     if_dict["result"] = "Error"
         #     if_dict["msg"] = str(e)
         #     return if_dict
-
+        er = ''
+        global er
         try:
             res = self.call_interface(if_dict["method"], if_dict["url"], if_dict["header"],
                                                  if_dict["body"], if_dict["data_type"])
