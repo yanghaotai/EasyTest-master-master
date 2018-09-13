@@ -198,19 +198,19 @@ class Execute():
         return sign_type
 
 
-    # 发送请求(原始)
-    def call_interface(self, method, url, header, data, content_type='json'):
-        print(url, header, data)
-        if method == "post":
-            if content_type == "json":
-                res = requests.post(url=url, json=data, headers=header, verify=False)
-            if content_type == "data":
-                res = requests.post(url=url, data=data, headers=header, verify=False)
-        if method == "get":
-            # res = requests.get(url=url, params=data, headers=header, verify=False)
-            res = requests.get(url=url, params=data, headers=header)
-        print(res.status_code, res.text)
-        return res
+    # # 发送请求(原始)
+    # def call_interface(self, method, url, header, data, content_type='json'):
+    #     print(url, header, data)
+    #     if method == "post":
+    #         if content_type == "json":
+    #             res = requests.post(url=url, json=data, headers=header, verify=False)
+    #         if content_type == "data":
+    #             res = requests.post(url=url, data=data, headers=header, verify=False)
+    #     if method == "get":
+    #         # res = requests.get(url=url, params=data, headers=header, verify=False)
+    #         res = requests.get(url=url, params=data, headers=header)
+    #     print(res.status_code, res.text)
+    #     return res
 
 
     # # 发送请求
@@ -236,4 +236,32 @@ class Execute():
     #     print(res.status_code, res.text)
     #     return res
 
+
+
+
+    # 发送请求(111)
+    def call_interface(self, method, url, header, data, content_type='json'):
+        header = header
+        user_agent_list = [
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.106 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 10.0; …) Gecko/20100101 Firefox/61.0",
+            "Mozilla/5.0 (Windows NT 10.0; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/64.0.3282.186 Safari/537.36",
+            "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/62.0.3202.62 Safari/537.36",
+            "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/45.0.2454.101 Safari/537.36",
+            "Mozilla/4.0 (compatible; MSIE 7.0; Windows NT 6.0)",
+            "Mozilla/5.0 (Macintosh; U; PPC Mac OS X 10.5; en-US; rv:1.9.2.15) Gecko/20110303 Firefox/3.6.15",
+        ]
+        header['User-Agent'] = random.choice(user_agent_list)
+        print(url, header, data)
+        if method == "post":
+            if content_type == "json":
+                res = requests.post(url=url, json=data, headers=header, verify=False)
+            if content_type == "data":
+                res = requests.post(url=url, data=data, headers=header, verify=False)
+        if method == "get":
+            # res = requests.get(url=url, params=data, headers=header, verify=False)
+            res = requests.get(url=url, params=data, headers=header)
+        print(res.status_code, res.text)
+        return res
 
