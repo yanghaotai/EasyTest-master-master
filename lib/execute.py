@@ -90,6 +90,7 @@ class Execute():
             if_dict["res_content"] = res.json()
         except requests.RequestException as er:
             e = str(er)
+            print(e)
             while 'Connection aborted' in e:
                 try:
                     res = self.call_interface(if_dict["method"], if_dict["url"], if_dict["header"],if_dict["body"], if_dict["data_type"])
@@ -98,8 +99,10 @@ class Execute():
                     if_dict["res_content"] = res.json()
                 except requests.RequestException as er:
                     e = str(er)
+                    print(e)
         except Exception as es:
             print(type(es))
+            print(es)
             if_dict["result"] = "Error"
             if_dict["msg"] = str(es)
             return if_dict
