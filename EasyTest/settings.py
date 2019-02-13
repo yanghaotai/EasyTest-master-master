@@ -91,7 +91,7 @@ DATABASES = {
         'HOST': "118.24.90.64",
         'NAME': "EasyTest",
         'USER': "root",
-        'PASSWORD': "123456",
+        'PASSWORD': "root123456",
         'PORT': "3306",
         'OPTIONS': {
             'isolation_level':None,
