@@ -33,6 +33,9 @@
                         <th>ID</th>
                         <th>接口名称</th>
                         <th>所属项目</th>
+                        <th>URL</th>
+                        <th>请求方式</th>
+                        <th>数据传输方式</th>
                         <th>描述</th>
                         <th>操作</th>
                     </tr>
@@ -43,6 +46,9 @@
                         <td>{{ if.if_id }}</td>
                         <td>{{ if.if_name }}</td>
                         <td>{{ if.project }}</td>
+                        <td>{{ if.url }}</td>
+                        <td>{{ if.method }}</td>
+                        <td>{{ if.data_type }}</td>
                         <td>{{ if.description }}</td>
                         <td>
                             <a href="/base/interface_update?if_id={{ if.if_id }}" class="layui-btn layui-btn-xs"
